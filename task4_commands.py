@@ -12,9 +12,9 @@ def input_error(function):
 
 @input_error
 def add_contact(args, contacts):
+    name, phone = args
     if name in contacts:
         return "Contact already exists"
-    name, phone = args
     contacts[name] = phone
     return "Contact added"
 @input_error
