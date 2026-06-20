@@ -12,14 +12,18 @@ def input_error(function):
 
 @input_error
 def add_contact(args, contacts):
+    if name in contacts:
+        return "Contact already exists"
     name, phone = args
     contacts[name] = phone
     return "Contact added"
 @input_error
 def change_contact(args, contacts):
     name, phone = args
-    contacts[name] = phone
-    return "Contact changed"
+    if name in contacts:
+        contacts[name] = phone
+        return "Contact changed"
+    else: return "No such contact"
 @input_error
 def check_phone(args, contacts):
     name  = args[0]
@@ -31,4 +35,4 @@ def all_contacts(contacts):
     result = ""
     for name, phone in contacts.items():
         result += f"{name}: {phone}\n"
-    return result.strip()
+    return result.strip() 

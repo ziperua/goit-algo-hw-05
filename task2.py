@@ -1,10 +1,11 @@
+import re
+
 def generator_numbers(text):
-    for item in text.split():
-        try:
-            number = float(item)
-            yield number
-        except ValueError:
-            pass
+    pattern = r'(?<= )\d+\.\d+(?= )' #перевірити пробіл перед собою, ціла частина числа,
+    #точка, дрібна частина, перевірити пробіл після себе
+
+    for match in re.finditer(pattern, text):
+        yield float(match.group()) #дістає саму знайдену строку
 
 def sum_profit(text, function):
     total = 0
